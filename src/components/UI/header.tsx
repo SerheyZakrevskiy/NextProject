@@ -1,13 +1,16 @@
 "use client"
 
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@heroui/react";
+import { siteConfig } from "@/config/site.config";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button} from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export const Logo = () => {
   return (
     <Image
     src="/logo.png"
-    alt="Ukrainian cuisine"
+    alt={siteConfig.title}
     width={30}
     height={30}
     priority
@@ -18,28 +21,47 @@ export const Logo = () => {
 };
 
 export default function Header() {
+
+  const pathname = usePathname();
+  
+  const getNavItems = () => {
+    return siteConfig.navItems.map((item) => {
+
+          const isActive = pathname === item.href;
+
+          return <NavbarItem key={item.href}>
+          <Link color="foreground"
+           href={item.href}
+           className={`px-3 py-1
+            ${isActive ? "text-blue-500" : "text-foreground"}
+            hocer:text-blue-300 hover:border
+            hover:border-blue-300 hover^rounded-md
+            transition-colors
+            transition-border
+            duration-200`}
+           >
+            {item.label}
+          </Link>
+        </NavbarItem>
+        })
+
+  }
+
+
+
   return (
     <Navbar>
       <NavbarBrand>
-        <Logo />
-        <p className="font-bold text-inherit">ACME</p>
+        <Link 
+          href="/" 
+          className="flex gap-1">
+          <Logo />
+          <p className="font-bold text-inherit">{siteConfig.title}</p>
+        </Link>
+
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link aria-current="page" href="#">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
+        {getNavItems()}
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
