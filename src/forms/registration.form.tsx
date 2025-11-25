@@ -1,5 +1,6 @@
 "use client";
 
+import { prisma } from "@/utils/prisma";
 import { Form } from "@heroui/form";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/react";
@@ -24,6 +25,15 @@ const RegistrationForm = ({ onClose }: IProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
+
+    const user = await prisma.user.create({
+      data: {
+        email: formData.email,
+        password: formData.password,
+      },
+    });
+
+    console.log("user", user);
 
     onClose();
   };
