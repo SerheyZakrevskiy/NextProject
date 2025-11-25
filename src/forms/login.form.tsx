@@ -43,23 +43,6 @@ const LoginForm = ({ onClose }: IProps) => {
         }}
       />
       <Input
-        aria-label="Email"
-        isRequired
-        name="email"
-        placeholder="Enter your email"
-        type="email"
-        value={formData.email}
-        classNames={{
-          inputWrapper: "bg-default-100",
-          input: "text-sm focus:outline-none ",
-        }}
-        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-        validate={(value) => {
-          if (!value) return "Email is optional";
-          return null;
-        }}
-      />
-      <Input
         isRequired
         name="password"
         placeholder="Enter your password"
@@ -69,7 +52,7 @@ const LoginForm = ({ onClose }: IProps) => {
           inputWrapper: "bg-default-100",
           input: "text-sm focus:outline-none ",
         }}
-        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
         validate={(value) => {
           if (!value) return "password is optional";
           if (value.length < 6) return "password length min 6 symbol";

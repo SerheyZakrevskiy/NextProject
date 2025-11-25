@@ -58,7 +58,7 @@ const RegistrationForm = ({ onClose }: IProps) => {
           inputWrapper: "bg-default-100",
           input: "text-sm focus:outline-none ",
         }}
-        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        onChange={(e) => setFormData({ ...formData, password: e.target.value })}
         validate={(value) => {
           if (!value) return "password is optional";
           if (value.length < 6) return "password length min 6 symbol";
@@ -75,7 +75,9 @@ const RegistrationForm = ({ onClose }: IProps) => {
           inputWrapper: "bg-default-100",
           input: "text-sm focus:outline-none ",
         }}
-        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        onChange={(e) =>
+          setFormData({ ...formData, confirmPassword: e.target.value })
+        }
         validate={(value) => {
           if (!value) return "password confirm is optional";
           if (value !== formData.password) return "passwords do not match";
