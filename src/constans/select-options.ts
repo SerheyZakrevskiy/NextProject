@@ -1,16 +1,16 @@
 export const CATEGORY_OPTIONS = [
-  { value: "vegetables", label: "Vegetables" },
-  { value: "fruit", label: "Fruit" },
-  { value: "meat", label: "Meat" },
-  { value: "dairy", label: "Dairy" },
-  { value: "spices", label: "Spices" },
-  { value: "other", label: "Other" },
+  { value: "VEGETABLES", label: "Vegetables" },
+  { value: "FRUITS", label: "Fruit" },
+  { value: "MEAT", label: "Meat" },
+  { value: "DAIRY", label: "Dairy" },
+  { value: "SPICES", label: "Spices" },
+  { value: "OTHER", label: "Other" },
 ] as const;
 
 export const UNIT_OPTIONS = [
-  { value: "grams", label: "Grams" },
-  { value: "Kilograms", label: "Kilograms" },
-  { value: "liters", label: "Liters" },
-  { value: "mililiters", label: "Mililiters" },
-  { value: "piecer", label: "Pieces" },
-];
+  { value: "GRAMS", label: "Grams" },
+  { value: "KILOGRAMS", label: "Kilograms" },
+  { value: "LITERS", label: "Liters" },
+  { value: "MILILITERS", label: "Mililiters" },
+  { value: "PIECES", label: "Pieces" },
+] as const;
