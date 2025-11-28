@@ -1,7 +1,9 @@
 "use client";
 
 import { siteConfig } from "@/config/site.config";
+import DOMPurify from "isomorphic-dompurify";
 import { usePathname } from "next/navigation";
+import parse from "html-react-parser";
 
 const PageContent = () => {
   const pathname = usePathname();
@@ -12,7 +14,9 @@ const PageContent = () => {
     return <div>PAGE NOT FOUND</div>;
   }
 
-  return <p>{PageContent.content}</p>;
+  const cleanHTML = DOMPurify.sanitize(PageContent.content);
+
+  return <div>{parse(cleanHTML)}</div>;
 };
 
 export default PageContent;

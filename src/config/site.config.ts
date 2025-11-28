@@ -17,22 +17,47 @@ export const siteConfig = {
       content: "",
     },
     "/about": {
-      content: `Ukrainian cuisine is comfort food with a proud history — simple
-        ingredients, bold flavors, and recipes passed down through generations.
-        Our website is a place where you can explore that taste in a modern,
-        easy way. Here you’ll find traditional dishes like borshch, varenyky,
-        holubtsi, deruny, banosh, pampushky, and узвар — with clear
-        descriptions, beautiful photos, and step-by-step recipes you can
-        actually follow. We also explain what makes each dish special: where it
-        comes from, when Ukrainians usually cook it, and which regions are most
-        famous for it. Use the site to: browse recipes by category (soups,
-        mains, pastries, drinks, desserts) filter by difficulty, cooking time,
-        and ingredients learn Ukrainian food vocabulary (with pronunciation
-        tips) build a shopping list and save favorites discover seasonal and
-        regional selections (Carpathian, Poltava-style, Odesa cuisine, and more)
-        Whether you’re Ukrainian and missing home food, or you’re discovering
-        Ukraine through cooking — this site helps you bring real Ukrainian
-        flavors to your kitchen.`,
+      content: `<h1>Ukrainian Cuisine: Comfort Food with a Proud History</h1>
+    <p>
+      Ukrainian cuisine is comfort food with a proud history — simple ingredients, bold flavors,
+      and recipes passed down through generations.
+    </p>
+  </header>
+
+  <p>
+    Our website is a place where you can explore that taste in a modern, easy way. Here you’ll find
+    traditional dishes like <strong>borshch</strong>, <strong>varenyky</strong>, <strong>holubtsi</strong>,
+    <strong>deruny</strong>, <strong>banosh</strong>, <strong>pampushky</strong>, and <strong>узвар</strong> —
+    with clear descriptions, beautiful photos, and step-by-step recipes you can actually follow.
+  </p>
+
+  <p>
+    We also explain what makes each dish special:
+    <em>where it comes from</em>, <em>when Ukrainians usually cook it</em>, and
+    <em>which regions are most famous for it</em>.
+  </p>
+
+  <h2>What you can do on the site</h2>
+  <ul>
+    <li>
+      Browse recipes by category:
+      <span>soups, mains, pastries, drinks, desserts</span>
+    </li>
+    <li>Filter by <strong>difficulty</strong>, <strong>cooking time</strong>, and <strong>ingredients</strong></li>
+    <li>Learn Ukrainian food vocabulary <em>(with pronunciation tips)</em></li>
+    <li>Build a shopping list and save favorites</li>
+    <li>
+      Discover seasonal and regional selections:
+      <span>Carpathian, Poltava-style, Odesa cuisine, and more</span>
+    </li>
+  </ul>
+
+  <hr />
+
+  <p>
+    Whether you’re Ukrainian and missing home food, or you’re discovering Ukraine through cooking —
+    this site helps you bring real Ukrainian flavors to your kitchen.
+  </p>`,
     },
   },
 };
