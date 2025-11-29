@@ -1,7 +1,7 @@
 import IngredientsTable from "@/components/UI/tables/ingredients";
 import IngredientsForm from "@/forms/ingredient.form";
 
-const ingridientsPage = () => {
+const ingredientsPage = () => {
   return (
     <div>
       <IngredientsForm></IngredientsForm>
@@ -10,4 +10,4 @@ const ingridientsPage = () => {
   );
 };
 
-export default ingridientsPage;
+export default ingredientsPage;

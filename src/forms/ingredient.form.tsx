@@ -30,19 +30,16 @@ const IngredientsForm = () => {
 
       if (storeError) {
         setError(storeError);
-        alert("Error creating ingredient");
       } else {
         setError(null);
 
         setFormData(initialState);
-
-        alert("Successfully");
       }
     });
   };
 
   return (
-    <Form className="w-[400px]" action={handleSubmit}>
+    <Form className="w-full" action={handleSubmit}>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       <Input
         isRequired

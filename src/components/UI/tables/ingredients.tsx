@@ -31,6 +31,10 @@ const IngredientsTable = () => {
     return option ? option.label : value;
   };
 
+  if (!isAuth) {
+    return <p>To view the contents of the page, please log in first.</p>;
+  }
+
   return !isLoading && isAuth ? (
     <Table
       aria-label="Ingredients list"
