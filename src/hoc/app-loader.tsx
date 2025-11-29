@@ -11,10 +11,8 @@ interface IProps {
 
 const AppLoader = ({ children }: IProps) => {
   const { data: session, status } = useSession();
-  const { ingredients, loadIngredients } = useIngredientStore();
+  const { loadIngredients } = useIngredientStore();
   const { isAuth, setAuthState } = useAuthStore();
-
-  console.log("ingredietns", ingredients);
 
   useEffect(() => {
     setAuthState(status, session);
@@ -24,7 +22,7 @@ const AppLoader = ({ children }: IProps) => {
     if (isAuth) {
       loadIngredients();
     }
-  });
+  }, [isAuth, loadIngredients]);
 
   return <>{children}</>;
 };

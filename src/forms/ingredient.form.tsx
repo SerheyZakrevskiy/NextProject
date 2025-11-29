@@ -2,6 +2,7 @@
 
 import { createIngredient } from "@/actions/ingredient";
 import { CATEGORY_OPTIONS, UNIT_OPTIONS } from "@/constans/select-options";
+import { useIngredientStore } from "@/store/ingredient.store";
 import { Form } from "@heroui/form";
 import { Input } from "@heroui/input";
 import { Button, Select, SelectItem } from "@heroui/react";
@@ -23,13 +24,12 @@ const IngredientsForm = () => {
   const [isPending, startTransition] = useTransition();
 
   const handleSubmit = async (formData: FormData) => {
-    console.log("Form submitted:", formData);
-
     startTransition(async () => {
-      const result = await createIngredient(formData);
+      await createIngredient(formData);
+      const storeError = useIngredientStore.getState().error;
 
-      if (result.error) {
-        setError(result.error);
+      if (storeError) {
+        setError(storeError);
         alert("Error creating ingredient");
       } else {
         setError(null);
