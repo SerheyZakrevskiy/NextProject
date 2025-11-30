@@ -86,7 +86,7 @@ const RecipeForm = ({ initialRecipe }: RecipeFormProps) => {
         router.push("/");
         setFormData(initialState);
       } else {
-        setError(result.error || "Ошибка при сохранении рецепта");
+        setError(result.error || "Error is saving recipes");
       }
     });
   };
@@ -98,7 +98,7 @@ const RecipeForm = ({ initialRecipe }: RecipeFormProps) => {
       <Input
         isRequired
         name="name"
-        placeholder="Введите название рецепта"
+        placeholder="Enter name recipes"
         type="text"
         value={formData.name}
         classNames={{
@@ -106,12 +106,12 @@ const RecipeForm = ({ initialRecipe }: RecipeFormProps) => {
           input: "text-sm focus:outline-none",
         }}
         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-        validate={(value) => (!value ? "Название обязательно" : null)}
+        validate={(value) => (!value ? "name is requaired" : null)}
       />
 
       <Input
         name="description"
-        placeholder="Введите описание (необязательно)"
+        placeholder="Enter description (optional)"
         type="text"
         value={formData.description}
         classNames={{
@@ -124,7 +124,7 @@ const RecipeForm = ({ initialRecipe }: RecipeFormProps) => {
       />
       <Input
         name="imageUrl"
-        placeholder="URL изображения (необязательно)"
+        placeholder="URL image (optional)"
         type="url"
         value={formData.imageUrl}
         classNames={{
@@ -140,7 +140,7 @@ const RecipeForm = ({ initialRecipe }: RecipeFormProps) => {
             <Select
               isRequired
               name={`ingredient_${index}`}
-              placeholder="Выберите ингредиент"
+              placeholder="Select an ingredient"
               selectedKeys={field.ingredientId ? [field.ingredientId] : []}
               classNames={{
                 trigger: "bg-default-100 w-full",
@@ -161,7 +161,7 @@ const RecipeForm = ({ initialRecipe }: RecipeFormProps) => {
             <Input
               isRequired
               name={`quantity_${index}`}
-              placeholder="Количество"
+              placeholder="quantity"
               type="number"
               value={field.quantity !== null ? field.quantity.toString() : ""}
               classNames={{
@@ -178,7 +178,7 @@ const RecipeForm = ({ initialRecipe }: RecipeFormProps) => {
               }
               validate={(value) =>
                 !value || parseFloat(value) <= 0
-                  ? "Количество должно быть больше 0"
+                  ? "The quantity must be greater than zero."
                   : null
               }
             />
@@ -208,7 +208,7 @@ const RecipeForm = ({ initialRecipe }: RecipeFormProps) => {
 
       <div className="flex w-full items-center justify-end mt-4">
         <Button color="primary" type="submit" isLoading={isPending}>
-          {initialRecipe ? "Сохранить изменения" : "Добавить рецепт"}
+          {initialRecipe ? "Save changes" : "Add recipes"}
         </Button>
       </div>
     </Form>
