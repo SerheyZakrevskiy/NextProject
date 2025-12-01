@@ -63,7 +63,7 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
         <p className="text-gray-600 line-clamp-6">
           {recipe.description || "Без описания"}
         </p>
-        <h3 className="mt-4 font-semibold">Ингредиенты:</h3>
+        <h3 className="mt-4 font-semibold">ingredients:</h3>
         <ul className="list-disc pl-5 overflow-y-auto max-h-24">
           {recipe.ingredients.map((ing) => (
             <li key={ing.id}>

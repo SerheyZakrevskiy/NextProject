@@ -1,5 +1,6 @@
+"use server";
+
 import { prisma } from "@/utils/prisma";
-import { success } from "zod";
 
 export async function getRecipes() {
   try {
@@ -15,8 +16,8 @@ export async function getRecipes() {
 
     return { success: true, recipes };
   } catch (error) {
-    console.error("Error fetching recipes", error);
-    return { success: false, error: "Error loading recipes" };
+    console.error("Error fetching recipes:", error);
+    return { success: false, error: "Error fetching recipes" };
   }
 }
 
@@ -31,14 +32,14 @@ export async function createRecipe(formData: FormData) {
       .map(([key, value]) => ({
         ingredientId: value as string,
         quantity: parseFloat(
-          formData.get(`quantity_${key.split("")[1]}`) as string
+          formData.get(`quantity_${key.split("_")[1]}`) as string
         ),
       }));
 
     if (!name || ingredients.length === 0) {
       return {
         success: false,
-        error: "The name and at least one ingredient are required.",
+        error: "Name, at least one component is required",
       };
     }
 
@@ -54,7 +55,6 @@ export async function createRecipe(formData: FormData) {
           })),
         },
       },
-
       include: {
         ingredients: {
           include: {
@@ -66,8 +66,8 @@ export async function createRecipe(formData: FormData) {
 
     return { success: true, recipe };
   } catch (error) {
-    console.error("Error creating recipes", error);
-    return { success: false, error: "Error creating recipes" };
+    console.error("Error creating recipe:", error);
+    return { success: false, error: "Error creating recipe" };
   }
 }
 
@@ -76,20 +76,19 @@ export async function updateRecipe(id: string, formData: FormData) {
     const name = formData.get("name") as string;
     const description = formData.get("description") as string;
     const imageUrl = formData.get("imageUrl") as string | null;
-
     const ingredients = Array.from(formData.entries())
       .filter(([key]) => key.startsWith("ingredient_"))
       .map(([key, value]) => ({
         ingredientId: value as string,
         quantity: parseFloat(
-          formData.get(`quantity_${key.split("")[1]}`) as string
+          formData.get(`quantity_${key.split("_")[1]}`) as string
         ),
       }));
 
     if (!name || ingredients.length === 0) {
       return {
         success: false,
-        error: "The name and at least one ingredient are required.",
+        error: "Name, at least one component is required",
       };
     }
 
@@ -107,7 +106,6 @@ export async function updateRecipe(id: string, formData: FormData) {
           })),
         },
       },
-
       include: {
         ingredients: {
           include: {
@@ -119,8 +117,8 @@ export async function updateRecipe(id: string, formData: FormData) {
 
     return { success: true, recipe };
   } catch (error) {
-    console.error("Error updating recipes", error);
-    return { success: false, error: "Error updating recipes" };
+    console.error("Error updating recipe:", error);
+    return { success: false, error: "Error updating recipe" };
   }
 }
 
@@ -133,9 +131,10 @@ export async function deleteRecipe(id: string) {
     await prisma.recipe.delete({
       where: { id },
     });
+
     return { success: true };
   } catch (error) {
-    console.error("Error deleting recipes", error);
-    return { success: false, error: "Error deleting recipes" };
+    console.error("Error deleting recipe:", error);
+    return { success: false, error: "Error deleting recipe" };
   }
 }
