@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "ru.pinterest.com" },
       { protocol: "https", hostname: "unsplash.com" },
       { protocol: "https", hostname: "encrypted-tbn0.gstatic.com" },
+      { protocol: "https", hostname: "www.chiquita.com" },
+      { protocol: "https", hostname: "assets.bonappetit.com" },
     ],
   },
 };
