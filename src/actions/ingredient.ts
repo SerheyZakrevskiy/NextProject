@@ -1,7 +1,7 @@
 "use server";
 
 import { ingredientSchema } from "@/schema/zod";
-import { prisma } from "@/utils/prisma";
+import prisma from "@/utils/prisma";
 
 import z, { ZodError } from "zod";
 

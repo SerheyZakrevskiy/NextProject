@@ -1,8 +1,8 @@
-import { getToken, GetTokenParams } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { getToken, GetTokenParams } from "next-auth/jwt";
 
-export default async function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   let params: GetTokenParams = {
@@ -10,17 +10,25 @@ export default async function proxy(request: NextRequest) {
     secret: process.env.AUTH_SECRET ?? "secret",
   };
 
+  if (process.env.NODE_ENV === "production") {
+    params = {
+      ...params,
+      cookieName: "__Secure-authjs.session-token",
+    };
+  }
+
   const token = await getToken(params);
+
   const protectedRoutes = ["/ingredients", "/recipes/new", "/recipes/:path*"];
 
   if (
     protectedRoutes.some((route) =>
-      pathname.startsWith(route.replace(":path", ""))
+      pathname.startsWith(route.replace(":path*", ""))
     )
   ) {
     if (!token) {
       const url = new URL("/error", request.url);
-      url.searchParams.set("message", "Not enough rights");
+      url.searchParams.set("message", "Недостаточно прав");
       return NextResponse.redirect(url);
     }
   }
@@ -29,5 +37,5 @@ export default async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/ingredients/:path*", "/recipes/new", "/recipes/:path*"],
+  matcher: ["/ingredients", "/recipes/new", "/recipes/:path*"],
 };
