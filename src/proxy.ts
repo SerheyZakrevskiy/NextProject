@@ -1,13 +1,16 @@
-import { getToken } from "next-auth/jwt";
+import { getToken, GetTokenParams } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export default async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const token = await getToken({
+
+  let params: GetTokenParams = {
     req: request,
-    secret: process.env.AUTH_SECRET,
-  });
+    secret: process.env.AUTH_SECRET ?? "secret",
+  };
+
+  const token = await getToken(params);
   const protectedRoutes = ["/ingredients", "/recipes/new", "/recipes/:path*"];
 
   if (
