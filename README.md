@@ -20,13 +20,10 @@ RecipeHub — full-stack вебзастосунок для роботи з ре�
 
 ## Setup (local)
 
-```bash
 npm install
 npm run dev
 
 Open [https://next-project-woad-one.vercel.app/](https://next-project-woad-one.vercel.app/) with your browser to see the result.
-
-
 
 ## Minimal keys:
 
@@ -47,4 +44,3 @@ MIT — see LICENSE
 ## Author
 
 Sergiy
-```
