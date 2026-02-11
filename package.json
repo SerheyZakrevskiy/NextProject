@@ -49,6 +49,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
     "jsdom": "^27.2.0",
+    "license-checker": "^25.0.1",
     "prisma": "^7.1.0",
     "tailwindcss": "^4",
     "typescript": "^5",
