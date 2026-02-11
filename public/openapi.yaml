@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  title: RecipeHub API
+  version: "0.1.0"
+servers:
+  - url: http://localhost:3000
+paths:
+  /api/ingredients:
+    get:
+      summary: List ingredients
+      responses:
+        "200":
+          description: List of ingredients
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IngredientsListResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    post:
+      summary: Create ingredient
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateIngredientRequest"
+      responses:
+        "201":
+          description: Ingredient created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateIngredientResponse"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+components:
+  schemas:
+    Ingredient:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        category: { type: string }
+        unit: { type: string }
+        pricePerUnit: { type: number, nullable: true }
+        description: { type: string }
+    IngredientsListResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        ingredients:
+          type: array
+          items:
+            $ref: "#/components/schemas/Ingredient"
+    CreateIngredientRequest:
+      type: object
+      required: [name, category, unit, description]
+      properties:
+        name: { type: string }
+        category: { type: string }
+        unit: { type: string }
+        pricePerUnit: { type: number, nullable: true }
+        description: { type: string }
+    CreateIngredientResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        ingredient:
+          $ref: "#/components/schemas/Ingredient"
+    ErrorResponse:
+      type: object
+      properties:
+        success: { type: boolean }
+        error: { type: string }

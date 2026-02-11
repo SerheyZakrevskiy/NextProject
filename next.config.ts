@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "encrypted-tbn0.gstatic.com" },
       { protocol: "https", hostname: "www.chiquita.com" },
       { protocol: "https", hostname: "assets.bonappetit.com" },
+      { protocol: "https", hostname: "en.wikipedia.org" },
     ],
   },
 };
