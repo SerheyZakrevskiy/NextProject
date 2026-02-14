@@ -19,13 +19,53 @@ const config: StorybookConfig = {
 
   viteFinal: async (cfg) =>
     mergeConfig(cfg, {
+      optimizeDeps: {
+        exclude: [
+          "@prisma/client",
+          "@prisma/client/runtime/client",
+          "@prisma/client/runtime/library",
+          ".prisma/client",
+        ],
+      },
       resolve: {
-        alias: {
-          "@": path.resolve(__dirname, "../src"),
+        alias: [
+          {
+            find: /^next-auth\/react$/,
+            replacement: path.resolve(__dirname, "./mocks/next-auth-react.tsx"),
+          },
 
-          "@/utils/prisma": path.resolve(__dirname, "./mocks/prisma.ts"),
-          "@prisma/client": path.resolve(__dirname, "./mocks/prisma-client.ts"),
-        },
+          {
+            find: /^@prisma\/client$/,
+            replacement: path.resolve(__dirname, "./mocks/prisma-client.ts"),
+          },
+          {
+            find: /^@prisma\/client\/runtime\/.*$/,
+            replacement: path.resolve(__dirname, "./mocks/prisma-runtime.ts"),
+          },
+          {
+            find: /^\.prisma\/client(\/.*)?$/,
+            replacement: path.resolve(__dirname, "./mocks/prisma-runtime.ts"),
+          },
+
+          {
+            find: /^@\/utils\/prisma$/,
+            replacement: path.resolve(__dirname, "./mocks/prisma.ts"),
+          },
+
+          {
+            find: /^@\/generated\/prisma(\/.*)?$/,
+            replacement: path.resolve(__dirname, "./mocks/prisma-client.ts"),
+          },
+          {
+            find: /^\/src\/generated\/prisma(\/.*)?$/,
+            replacement: path.resolve(__dirname, "./mocks/prisma-client.ts"),
+          },
+
+          {
+            find: /^@\//,
+            replacement: path.resolve(__dirname, "../src/") + "/",
+          },
+        ],
       },
     }),
 };
