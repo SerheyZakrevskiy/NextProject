@@ -23,13 +23,9 @@ RecipeHub — full-stack вебзастосунок для роботи з ре�
 npm install
 npm run dev
 
+Open [http://localhost:3000](http://localhost:3000) local
+
 Open [https://next-project-woad-one.vercel.app/](https://next-project-woad-one.vercel.app/) with your browser to see the result.
-
-## Minimal keys:
-
-DATABASE_URL=
-NEXTAUTH_URL=
-NEXTAUTH_SECRET=
 
 ## Swagger / OpenAPI
 
